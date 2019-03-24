@@ -1,6 +1,7 @@
 import React from 'react';
 
 import DrawerToggleBtn from '../SideDrawer/DrawerToggleBtn';
+import MenuItems from '../MenuItems/MenuItems';
 import './Toolbar.css';
 
 const toolbar = props => (
@@ -11,14 +12,7 @@ const toolbar = props => (
             </div>
             <div className='toolbar__logo'><a href="/">Star Wars Universe</a></div>
             <div className='toolbar__navigation-items'>
-                <ul>
-                    <li><a href="/">Films</a></li>
-                    <li><a href="/">People</a></li>
-                    <li><a href="/">Planets</a></li>
-                    <li><a href="/">Species</a></li>
-                    <li><a href="/">Starships</a></li>
-                    <li><a href="/">Vehicles</a></li>
-                </ul>
+                <MenuItems />
             </div>
         </nav>
     </header>
