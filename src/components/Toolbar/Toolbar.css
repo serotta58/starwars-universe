@@ -9,9 +9,10 @@
 
 .toolbar__navigation {
     display: flex;
-    height: 100%;       /* so center tracks the toolbar height */
+    height: 100%;       /* so vertical center tracks the toolbar height */
     align-items: center;
     padding: 0 1rem;
+    justify-content: flex-start;
 }
 
 .toolbar__logo {
@@ -52,6 +53,10 @@
 @media (max-width: 720px) {
     .toolbar__navigation-items {
         display: none;
+    }
+    .toolbar__logo {
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
