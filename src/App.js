@@ -6,6 +6,7 @@ import Backdrop from './components/BackDrop/Backdrop';
 import Footer from './components/Footer/Footer';
 
 import Cards from './cards/Cards';
+import { DisplayMode, ListType, DetailType } from './DisplayStates';
 
 const urls = [
   'https://swapi.co/api/films/',
@@ -15,22 +16,6 @@ const urls = [
   'https://swapi.co/api/starships/',
   'https://swapi.co/api/vehicles/'
 ];
-
-// JavaScript pseudo enum
-const DisplayMode = {
-  Films: 1,
-  People: 2,
-  Planets: 3,
-  Species: 4,
-  Starships: 5,
-  Vehicles: 6,
-  FilmDetail: 7,
-  PersonDetail: 8,
-  PlanetDetail: 9,
-  SpeciesDetail: 10,
-  StarshipDetail: 11,
-  VehicleDetail: 12,
-};
 
 class App extends Component {
   constructor() {
@@ -44,7 +29,9 @@ class App extends Component {
       vehicles: new Map([]),
       sideDrawerOpen: false,
       loadingMessage: 'Loading the universe...',
-      displayMode: DisplayMode.Planets,
+      displayMode: DisplayMode.ListMode,
+      listType: ListType.Planets,
+      detailType: DetailType.FilmDetail,
     };
   }
 
@@ -114,37 +101,19 @@ class App extends Component {
       <Backdrop click={this.backdropClickHandler} /> : null;
 
     let bodyContent;
-    switch (this.state.displayMode) {
-      case DisplayMode.Films:
-        bodyContent = <Cards dataMap={this.state.films} />
-        break;
-      case DisplayMode.People:
-        bodyContent = <Cards dataMap={this.state.people} />
-        break;
-      case DisplayMode.Planets:
-        bodyContent = <Cards dataMap={this.state.planets} />
-        break;
-      case DisplayMode.Species:
-        break;
-      case DisplayMode.Starships:
-        break;
-      case DisplayMode.Vehicles:
-        break;
-      case DisplayMode.FilmDetail:
-        break;
-      case DisplayMode.PersonDetail:
-        break;
-      case DisplayMode.PlanetDetail:
-        break;
-      case DisplayMode.SpeciesDetail:
-        break;
-      case DisplayMode.StarshipDetail:
-        break;
-      case DisplayMode.VehicleDetail:
-        break;
-      default:
-        bodyContent = null;
-        break;
+    // If were in a list mode, let the Cards component pick the card types
+    // We send all data down in case some cross referencing is needed
+    // e.g.- to read the planets to get info on a person's homeworld
+    if (this.state.displayMode === DisplayMode.ListMode) {
+      bodyContent = <Cards
+        listType = {this.state.listType}
+        films={this.state.films}
+        people={this.state.people}
+        planets={this.state.planets}
+        species={this.state.species}
+        starships={this.state.starships}
+        vehicles={this.state.vehicles}
+        />;
     }
 
     if (loadingMessage.length) {
