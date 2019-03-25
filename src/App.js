@@ -8,6 +8,15 @@ import Footer from './components/Footer/Footer';
 import Cards from './cards/Cards';
 import { DisplayMode, ListType, DetailType } from './DisplayStates';
 
+// TODO: Make the menu items work, and make them change the URL and
+// vice versa to match.  E.g.- clicking the People menu should
+// load a list of people, but also show /people/ in the URL.  And
+// entering .../people should put it in that mode.
+// TODO: Add clickable links on some cards to jump to other detail
+// cards.  E.g.- home planet should be clickable and jump to that
+// planet's detail.  Or in a list of residents of a planet, be able
+// to jump to the detail on that planet.
+
 const urls = [
   'https://swapi.co/api/films/',
   'https://swapi.co/api/people/',
