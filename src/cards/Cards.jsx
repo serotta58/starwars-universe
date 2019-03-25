@@ -68,7 +68,11 @@ const cards = ({ listType, films, people, planets, species, starships, vehicles 
     }
 
     return (
-        <div>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap'
+        }}>
             {
                 arr.map(data => {
                     switch (dataType) {
