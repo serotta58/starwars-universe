@@ -1,0 +1,32 @@
+.card {
+    text-align: center;
+    background: #222222;
+    color: #cccccc;
+    display: inline-block;
+    border-radius: .5rem;
+    padding: 1rem;
+    margin: 0.5rem;
+    border-width: 0.25rem;
+    box-shadow: 4px 4px 8px 0 rgba( 0, 0, 0, .8 );
+}
+
+/* Can combine this with overflow-hidden to make background images grow on hover
+ * even if you are using background-size: cover */
+.grow {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ( 0 );
+    transform: translateZ( 0 );
+    transition: -webkit-transform .25s ease-out;
+    transition: transform .25s ease-out,
+    -webkit-transform .25s ease-out; }
+.grow:hover, .grow:focus {
+    -webkit-transform: scale( 1.05 );
+    transform: scale( 1.05 );
+ }
+.grow:active {
+    -webkit-transform: scale( .90 );
+    transform: scale( .90 );
+}
+ 

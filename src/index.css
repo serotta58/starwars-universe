@@ -6,9 +6,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(to right, rgb(14, 51, 151), rgb(0, 150, 170), rgb(14, 51, 151));
+  color: white;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+main {
+  /* Make sure main content clears the toolbar and footer */
+  margin-top: 64px;
+  margin-bottom: 32px;
 }

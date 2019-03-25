@@ -5,6 +5,8 @@
     width: 100%;
     background: rgb(14, 11, 160);
     height: 56px;
+    z-index: 10;
+    box-shadow: 0 2px 4px 0 rgba( 0, 0, 0, .8 );
 }
 
 .toolbar__navigation {

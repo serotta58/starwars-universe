@@ -1,0 +1,30 @@
+import React from "react";
+import FilmCard from './FilmCard';
+
+const cards = ({ dataMap }) => {
+    // convert map of url key, json data pairs into an array of json data
+    // const arr = Array.from(dataMap.values());   // alternate form
+    const arr = [...dataMap.values()];     // using spread notation
+    
+    // Get the type of data from the url: eg. .../films/1/ is films
+    const urlArray = arr[0].url.split('/');
+    const dataType = urlArray[urlArray.length - 3];
+
+    arr.sort((a,b) => a.episode_id-b.episode_id);
+    return (
+        <div>
+            {
+                arr.map(data => {
+                    switch (dataType) {
+                        case 'films':
+                            return <FilmCard key={data.url} film={data} />;
+                        default:
+                            return null;
+                    }
+                })
+            }
+        </div>
+    );
+};
+
+export default cards;
