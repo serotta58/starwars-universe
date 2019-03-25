@@ -44,7 +44,7 @@ class App extends Component {
       vehicles: new Map([]),
       sideDrawerOpen: false,
       loadingMessage: 'Loading the universe...',
-      displayMode: DisplayMode.Films,
+      displayMode: DisplayMode.Planets,
     };
   }
 
@@ -122,6 +122,7 @@ class App extends Component {
         bodyContent = <Cards dataMap={this.state.people} />
         break;
       case DisplayMode.Planets:
+        bodyContent = <Cards dataMap={this.state.planets} />
         break;
       case DisplayMode.Species:
         break;
