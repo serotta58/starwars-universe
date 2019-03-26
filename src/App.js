@@ -12,12 +12,8 @@ import SpeciesCards from './cards/SpeciesCards';
 import StarshipCards from './cards/StarshipCards';
 import VehicleCards from './cards/VehicleCards';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-// TODO: Make the menu items work, and make them change the URL and
-// vice versa to match.  E.g.- clicking the People menu should
-// load a list of people, but also show /people/ in the URL.  And
-// entering .../people should put it in that mode.
 // TODO: Add clickable links on some cards to jump to other detail
 // cards.  E.g.- home planet should be clickable and jump to that
 // planet's detail.  Or in a list of residents of a planet, be able
@@ -44,13 +40,9 @@ class App extends Component {
 
   loadMapOfObjects = async (url) => {
     const map = new Map([]);
-    let objCount = 0;
+    let arr = [];
     let reportedCount = 0;
     let nextUrl = url;
-    function addElement(elem) {
-      map.set(elem.url, elem);
-      ++objCount;
-    }
     // read each successive page until no more
     do {
       let response = await fetch(nextUrl);
@@ -62,13 +54,28 @@ class App extends Component {
       const jsonObj = await response.json();
       reportedCount = jsonObj.count;
 
-      // Iterate through the objects on this page and add them to the map
-      jsonObj.results.forEach(element => addElement(element));
+      // Iterate through the objects on this page and add them to the array
+      jsonObj.results.forEach(element => arr.push(element));
 
       nextUrl = jsonObj.next;
     } while (nextUrl);
-    if (objCount !== reportedCount) {
-      console.log('Expected: ', reportedCount, ' Got: ', objCount, ' for ', url)
+    // Sort the array on the appropriate field
+    const urlSplit = url.split('/');
+    const dataType = urlSplit[urlSplit.length - 2];
+    switch (dataType) {
+      case 'films':
+        arr.sort((a, b) => a.episode_id - b.episode_id);
+        break;
+      default:
+        arr.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+    }
+
+    // Convert the array to a map with the URL as the key
+    arr.forEach(element => map.set(element.url, element));
+
+    if (map.size !== reportedCount) {
+      console.log('Expected: ', reportedCount, ' Got: ', map.size, ' for ', url)
     }
     return map;
   }
@@ -120,23 +127,25 @@ class App extends Component {
             <SideDrawer show={this.state.sideDrawerOpen} />
             {backdrop}
             <main>
-              <Route path='/' exact render={() => (
+              <Route exact path='/' render={() => (
                 // <div className='centered-message'>
                 <div className='scroll-up'>
                   <div>
                     <h2>Explore the Star Wars Universe!</h2>
                     <p>Click any menu item to view a category.</p>
                     <p>Click on any item in a category for more detail.</p>
-                    <p>Click on any links to jump to an associated item.</p>
+                    <p>Click on any links to jump that item.</p>
                   </div>
                 </div>
               )} />
-              <Route path='/films' render={() => (<FilmCards universe={this.state.universe} />)} />
-              <Route path='/people' render={() => (<PeopleCards universe={this.state.universe} />)} />
-              <Route path='/planets' render={() => (<PlanetCards universe={this.state.universe} />)} />
-              <Route path='/species' render={() => (<SpeciesCards universe={this.state.universe} />)} />
-              <Route path='/starships' render={() => (<StarshipCards universe={this.state.universe} />)} />
-              <Route path='/vehicles' render={() => (<VehicleCards universe={this.state.universe} />)} />
+              <Switch>
+                <Route path='/films' render={() => (<FilmCards universe={this.state.universe} />)} />
+                <Route path='/people' render={() => (<PeopleCards universe={this.state.universe} />)} />
+                <Route path='/planets' render={() => (<PlanetCards universe={this.state.universe} />)} />
+                <Route path='/species' render={() => (<SpeciesCards universe={this.state.universe} />)} />
+                <Route path='/starships' render={() => (<StarshipCards universe={this.state.universe} />)} />
+                <Route path='/vehicles' render={() => (<VehicleCards universe={this.state.universe} />)} />
+              </Switch>
             </main>
             <footer>
               <Footer />
