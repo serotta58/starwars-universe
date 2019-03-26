@@ -5,8 +5,14 @@ import SideDrawer from './components/SideDrawer/SideDrawer';
 import Backdrop from './components/BackDrop/Backdrop';
 import Footer from './components/Footer/Footer';
 
-import Cards from './cards/Cards';
-import { DisplayMode, ListType, DetailType } from './DisplayStates';
+import FilmCards from './cards/FilmCards';
+import PeopleCards from './cards/PeopleCards';
+import PlanetCards from './cards/PlanetCards';
+import SpeciesCards from './cards/SpeciesCards';
+import StarshipCards from './cards/StarshipCards';
+import VehicleCards from './cards/VehicleCards';
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // TODO: Make the menu items work, and make them change the URL and
 // vice versa to match.  E.g.- clicking the People menu should
@@ -33,9 +39,6 @@ class App extends Component {
       universe: {},
       sideDrawerOpen: false,
       loadingMessage: 'Loading the universe...',
-      displayMode: DisplayMode.ListMode,
-      listType: ListType.Species,
-      detailType: DetailType.FilmDetail,
     };
   }
 
@@ -79,7 +82,7 @@ class App extends Component {
         urls.map(url => this.loadMapOfObjects(url))
       );
       this.setState({
-        universe: {films, people, planets, species, starships, vehicles},
+        universe: { films, people, planets, species, starships, vehicles },
         loadingMessage: ''
       });
     } catch (error) {
@@ -103,36 +106,43 @@ class App extends Component {
     const backdrop = (this.state.sideDrawerOpen) ?
       <Backdrop click={this.backdropClickHandler} /> : null;
 
-    let bodyContent;
-    // If were in a list mode, let the Cards component pick the card types
-    // We send all data down in case some cross referencing is needed
-    // e.g.- to read the planets to get info on a person's homeworld
-    if (this.state.displayMode === DisplayMode.ListMode) {
-      bodyContent = <Cards
-        listType = {this.state.listType}
-        universe = {this.state.universe}
-        />;
-    }
-
     if (loadingMessage.length) {
       return (
-        <div style={{ height: '200px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className='centered-message'>
           <h2>{loadingMessage}</h2>
         </div>
       );
     } else {
       return (
-        <div className="App">
-          <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
-          <SideDrawer show={this.state.sideDrawerOpen} />
-          {backdrop}
-          <main>
-            {bodyContent}
-          </main>
-          <footer>
-            <Footer />
-          </footer>
-        </div >
+        <Router>
+          <div className="App">
+            <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
+            <SideDrawer show={this.state.sideDrawerOpen} />
+            {backdrop}
+            <main>
+              <Route path='/' exact render={() => (
+                // <div className='centered-message'>
+                <div className='scroll-up'>
+                  <div>
+                    <h2>Explore the Star Wars Universe!</h2>
+                    <p>Click any menu item to view a category.</p>
+                    <p>Click on any item in a category for more detail.</p>
+                    <p>Click on any links to jump to an associated item.</p>
+                  </div>
+                </div>
+              )} />
+              <Route path='/films' render={() => (<FilmCards universe={this.state.universe} />)} />
+              <Route path='/people' render={() => (<PeopleCards universe={this.state.universe} />)} />
+              <Route path='/planets' render={() => (<PlanetCards universe={this.state.universe} />)} />
+              <Route path='/species' render={() => (<SpeciesCards universe={this.state.universe} />)} />
+              <Route path='/starships' render={() => (<StarshipCards universe={this.state.universe} />)} />
+              <Route path='/vehicles' render={() => (<VehicleCards universe={this.state.universe} />)} />
+            </main>
+            <footer>
+              <Footer />
+            </footer>
+          </div >
+        </Router>
       );
     }
   }

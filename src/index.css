@@ -20,3 +20,54 @@ main {
   padding-top: 56px;
   padding-bottom: 32px;
 }
+
+.centered-message {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-up {
+ height: 600px;	
+ overflow: hidden;
+ position: relative;
+}
+.scroll-up div {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ /* line-height: 50px; */
+ text-align: center;
+ word-wrap: normal;
+ /* Starting position */
+ -moz-transform:translateY(100%);
+ -webkit-transform:translateY(100%);	
+ transform:translateY(100%);
+ /* Apply animation to this element */	
+ -moz-animation: scroll-up 15s linear infinite;
+ -webkit-animation: scroll-up 15s linear infinite;
+ animation: scroll-up 15s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes scroll-up {
+ 0%   { -moz-transform: translateY(100%); }
+ 100% { -moz-transform: translateY(-100%); }
+}
+@-webkit-keyframes scroll-up {
+ 0%   { -webkit-transform: translateY(100%); }
+ 100% { -webkit-transform: translateY(-100%); }
+}
+@keyframes scroll-up {
+ 0%   { 
+  -moz-transform: translateY(100%); /* Firefox bug fix */
+  -webkit-transform: translateY(100%); /* Firefox bug fix */
+  transform: translateY(100%);
+ }
+ 100% { 
+  -moz-transform: translateY(-100%); /* Firefox bug fix */
+  -webkit-transform: translateY(-100%); /* Firefox bug fix */
+  transform: translateY(-100%);
+ }
+}

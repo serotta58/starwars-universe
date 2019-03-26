@@ -1,13 +1,15 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 const menuItems = props => (
     <ul>
-        <li><a href="/">Films</a></li>
-        <li><a href="/">People</a></li>
-        <li><a href="/">Planets</a></li>
-        <li><a href="/">Species</a></li>
-        <li><a href="/">Starships</a></li>
-        <li><a href="/">Vehicles</a></li>
+        <li><Link to="/films">Films</Link></li>
+        <li><Link to="/people">People</Link></li>
+        <li><Link to="/planets">Planets</Link></li>
+        <li><Link to="/species">Species</Link></li>
+        <li><Link to="/starships">Starships</Link></li>
+        <li><Link to="/vehicles">Vehicles</Link></li>
     </ul>
 );
 
