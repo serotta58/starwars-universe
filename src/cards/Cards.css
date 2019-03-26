@@ -29,4 +29,19 @@
     -webkit-transform: scale( .90 );
     transform: scale( .90 );
 }
- 
+
+.card h2 {
+    border-bottom: 2px solid gray;
+}
+
+.card-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.category-titlebar {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 10px;
+}

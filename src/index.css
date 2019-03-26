@@ -17,6 +17,6 @@ code {
 
 main {
   /* Make sure main content clears the toolbar and footer */
-  margin-top: 64px;
-  margin-bottom: 32px;
+  padding-top: 56px;
+  padding-bottom: 32px;
 }

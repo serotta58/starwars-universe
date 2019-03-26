@@ -30,16 +30,11 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      films: new Map([]),
-      people: new Map([]),
-      planets: new Map([]),
-      species: new Map([]),
-      starships: new Map([]),
-      vehicles: new Map([]),
+      universe: {},
       sideDrawerOpen: false,
       loadingMessage: 'Loading the universe...',
       displayMode: DisplayMode.ListMode,
-      listType: ListType.Planets,
+      listType: ListType.Species,
       detailType: DetailType.FilmDetail,
     };
   }
@@ -84,8 +79,7 @@ class App extends Component {
         urls.map(url => this.loadMapOfObjects(url))
       );
       this.setState({
-        films: films, people: people, planets: planets,
-        species: species, starships: starships, vehicles: vehicles,
+        universe: {films, people, planets, species, starships, vehicles},
         loadingMessage: ''
       });
     } catch (error) {
@@ -116,12 +110,7 @@ class App extends Component {
     if (this.state.displayMode === DisplayMode.ListMode) {
       bodyContent = <Cards
         listType = {this.state.listType}
-        films={this.state.films}
-        people={this.state.people}
-        planets={this.state.planets}
-        species={this.state.species}
-        starships={this.state.starships}
-        vehicles={this.state.vehicles}
+        universe = {this.state.universe}
         />;
     }
 

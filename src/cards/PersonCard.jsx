@@ -6,8 +6,8 @@ const personCard = ({person}) => {
     return (
         <div className='card grow'>
             <h2>{person.name}</h2>
-            <p>{person.gender}</p>
-            <p>{person.height} cm</p>
+            <p>Gender: {person.gender}</p>
+            <p>Height: {person.height} cm</p>
         </div>
     );
 }
