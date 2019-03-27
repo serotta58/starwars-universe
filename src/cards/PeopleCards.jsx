@@ -29,7 +29,7 @@ const PeopleCards = ({ universe }) => {
     return (
         <div>
             <div className='category-titlebar'>
-                <h1 className='card'>People</h1>
+                <h1 className='card'>Characters</h1>
             </div>
             <div className='card-list'>
                 {cardList}

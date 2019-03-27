@@ -55,7 +55,7 @@
     color: yellow;
 }
 
-@media (max-width: 740px) {
+@media (max-width: 750px) {
     .toolbar__navigation-items {
         display: none;
     }
@@ -65,7 +65,7 @@
     }
 }
 
-@media (min-width: 741px) {
+@media (min-width: 751px) {
     .toolbar__toggle-button {
          display: none;
     }
