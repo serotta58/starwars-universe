@@ -2,6 +2,7 @@
   "name": "starwars-universe",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://www.cunninghamconsulting.net/test-sites/starwars-universe",
   "dependencies": {
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
