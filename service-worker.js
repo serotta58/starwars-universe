@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/starwars-universe/precache-manifest.9b65aca235e22d5bc45f9caa63af9226.js"
+  "/starwars-universe/precache-manifest.b627ef63fd7b9e4ea76df07a9ab2ba76.js"
 );
 
 workbox.clientsClaim();
