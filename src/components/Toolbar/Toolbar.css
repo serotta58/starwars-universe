@@ -29,6 +29,7 @@
 
 .toolbar__navigation-items {
     margin-left: auto;
+    font-size: 1.2rem;
 }
 
 .toolbar__navigation-items ul {
@@ -47,12 +48,14 @@
     text-decoration: none;
 }
 
+.toolbar__logo a:hover,
+.toolbar__logo a:active,
 .toolbar__navigation-items a:hover,
 .toolbar__navigation-items a:active {
     color: yellow;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 740px) {
     .toolbar__navigation-items {
         display: none;
     }
@@ -62,7 +65,7 @@
     }
 }
 
-@media (min-width: 721px) {
+@media (min-width: 741px) {
     .toolbar__toggle-button {
          display: none;
     }

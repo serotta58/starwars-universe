@@ -45,3 +45,32 @@
     justify-content: center;
     padding: 20px 0 10px;
 }
+
+.detail {
+    text-align: center;
+    color: white;
+}
+
+.detail pre {
+    font-family: inherit;
+}
+
+.detail .list-title,
+.detail h1 {
+    /* border: 1px solid; */
+    width: 320px;
+    margin: 20px auto 5px;
+    padding: 4px;
+    background: rgb(14, 11, 160);
+    box-shadow: 1px 1px 4px 0 rgba( 0, 0, 0, .8 );
+}
+
+.detail h1 {
+    width: inherit;
+    padding: 32px 0 8px;
+    margin: 0;
+}
+
+.detail a {
+    color: #eeeeee;
+}

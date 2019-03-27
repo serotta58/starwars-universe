@@ -4,11 +4,12 @@ import Toolbar from './components/Toolbar/Toolbar';
 import SideDrawer from './components/SideDrawer/SideDrawer';
 import Backdrop from './components/BackDrop/Backdrop';
 import Footer from './components/Footer/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
-import FilmCards from './cards/FilmCards';
-import PeopleCards from './cards/PeopleCards';
-import PlanetCards from './cards/PlanetCards';
-import SpeciesCards from './cards/SpeciesCards';
+import FilmsPage from './cards/FilmCards';
+import PeoplePage from './cards/PeopleCards';
+import PlanetPage from './cards/PlanetCards';
+import SpeciesPage from './cards/SpeciesCards';
 import StarshipCards from './cards/StarshipCards';
 import VehicleCards from './cards/VehicleCards';
 
@@ -32,10 +33,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      universe: {},
       sideDrawerOpen: false,
       loadingMessage: 'Loading the universe...',
     };
+    this.universe = {};
   }
 
   loadMapOfObjects = async (url) => {
@@ -88,8 +89,9 @@ class App extends Component {
         // of data is being loaded, or how many objects so far.
         urls.map(url => this.loadMapOfObjects(url))
       );
+      this.universe = { films, people, planets, species, starships, vehicles };
+      // Flag that loading is complete
       this.setState({
-        universe: { films, people, planets, species, starships, vehicles },
         loadingMessage: ''
       });
     } catch (error) {
@@ -128,24 +130,25 @@ class App extends Component {
             {backdrop}
             <main>
               <Route exact path='/' render={() => (
-                // <div className='centered-message'>
                 <div className='scroll-up'>
                   <div>
                     <h2>Explore the Star Wars Universe!</h2>
-                    <p>Click any menu item to view a category.</p>
+                    <p>Click a menu item to view a category.</p>
                     <p>Click on any item in a category for more detail.</p>
                     <p>Click on any links to jump that item.</p>
                   </div>
                 </div>
               )} />
-              <Switch>
-                <Route path='/films' render={() => (<FilmCards universe={this.state.universe} />)} />
-                <Route path='/people' render={() => (<PeopleCards universe={this.state.universe} />)} />
-                <Route path='/planets' render={() => (<PlanetCards universe={this.state.universe} />)} />
-                <Route path='/species' render={() => (<SpeciesCards universe={this.state.universe} />)} />
-                <Route path='/starships' render={() => (<StarshipCards universe={this.state.universe} />)} />
-                <Route path='/vehicles' render={() => (<VehicleCards universe={this.state.universe} />)} />
-              </Switch>
+              <ScrollToTop>
+                <Switch>
+                  <Route path='/films' render={() => (<FilmsPage universe={this.universe} />)} />
+                  <Route path='/people' render={() => (<PeoplePage universe={this.universe} />)} />
+                  <Route path='/planets' render={() => (<PlanetPage universe={this.universe} />)} />
+                  <Route path='/species' render={() => (<SpeciesPage universe={this.universe} />)} />
+                  <Route path='/starships' render={() => (<StarshipCards universe={this.universe} />)} />
+                  <Route path='/vehicles' render={() => (<VehicleCards universe={this.universe} />)} />
+                </Switch>
+              </ScrollToTop>
             </main>
             <footer>
               <Footer />
