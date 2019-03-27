@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { isNullOrUndefined } from 'util';
 
 export function localizeNumeric(origStr) {
     // Add commas to numeric string, unless NaN
@@ -108,6 +109,9 @@ export const PlanetList = ({ planets, universe }) => {
 }
 
 export const PlanetLink = ({ origUrl, universe, useSpan }) => {
+    if (isNullOrUndefined(origUrl)) {
+        return <span>N/A</span>
+    }
     useSpan = useSpan || false;     // default is false
     const { planets } = universe;
     const arr = origUrl.split('/');
