@@ -15,10 +15,8 @@ import VehiclePage from './cards/VehicleCards';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-// TODO: Add clickable links on some cards to jump to other detail
-// cards.  E.g.- home planet should be clickable and jump to that
-// planet's detail.  Or in a list of residents of a planet, be able
-// to jump to the detail on that planet.
+// TODO: Add some loading progress feedback such as showing which category
+// is being loaded, or how many items so far (as they are pulled from each page?).
 
 const urls = [
   'https://swapi.co/api/films/',

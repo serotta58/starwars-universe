@@ -110,7 +110,7 @@ export const PlanetList = ({ planets, universe }) => {
 
 export const PlanetLink = ({ origUrl, universe, useSpan }) => {
     if (isNullOrUndefined(origUrl)) {
-        return <span>N/A</span>
+        return useSpan ? <span>N/A</span> : <div>N/A</div>;
     }
     useSpan = useSpan || false;     // default is false
     const { planets } = universe;
