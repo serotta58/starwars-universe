@@ -123,7 +123,7 @@ class App extends Component {
       );
     } else {
       return (
-        <Router>
+        <Router basename='/starwars-universe'>
           <div className="App">
             <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
             <SideDrawer show={this.state.sideDrawerOpen} />
