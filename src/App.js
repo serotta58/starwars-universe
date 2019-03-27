@@ -6,12 +6,12 @@ import Backdrop from './components/BackDrop/Backdrop';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
-import FilmsPage from './cards/FilmCards';
+import FilmPage from './cards/FilmCards';
 import PeoplePage from './cards/PeopleCards';
 import PlanetPage from './cards/PlanetCards';
 import SpeciesPage from './cards/SpeciesCards';
-import StarshipCards from './cards/StarshipCards';
-import VehicleCards from './cards/VehicleCards';
+import StarshipPage from './cards/StarshipCards';
+import VehiclePage from './cards/VehicleCards';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -134,19 +134,19 @@ class App extends Component {
                   <div>
                     <h2>Explore the Star Wars Universe!</h2>
                     <p>Click a menu item to view a category.</p>
-                    <p>Click on any item in a category for more detail.</p>
+                    <p>Click on any item card in a category for more detail.</p>
                     <p>Click on any links to jump that item.</p>
                   </div>
                 </div>
               )} />
               <ScrollToTop>
                 <Switch>
-                  <Route path='/films' render={() => (<FilmsPage universe={this.universe} />)} />
+                  <Route path='/films' render={() => (<FilmPage universe={this.universe} />)} />
                   <Route path='/people' render={() => (<PeoplePage universe={this.universe} />)} />
                   <Route path='/planets' render={() => (<PlanetPage universe={this.universe} />)} />
                   <Route path='/species' render={() => (<SpeciesPage universe={this.universe} />)} />
-                  <Route path='/starships' render={() => (<StarshipCards universe={this.universe} />)} />
-                  <Route path='/vehicles' render={() => (<VehicleCards universe={this.universe} />)} />
+                  <Route path='/starships' render={() => (<StarshipPage universe={this.universe} />)} />
+                  <Route path='/vehicles' render={() => (<VehiclePage universe={this.universe} />)} />
                 </Switch>
               </ScrollToTop>
             </main>

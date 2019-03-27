@@ -6,7 +6,7 @@ import {
     SpeciesList, StarshipList, VehicleList } from './CardFuncs';
 import './Cards.css'
 
-const FilmsPage = ({ universe }) => {
+const FilmPage = ({ universe }) => {
     return (
         <Switch>
             <Route exact path='/films' render={() => (<FilmCards universe={universe} />)} />
@@ -77,4 +77,4 @@ const FilmDetail = ({ match, universe }) => {
     );
 }
 
-export default FilmsPage;
+export default FilmPage;

@@ -61,7 +61,7 @@ const PlanetDetail = ({ match, universe }) => {
             <h2>Terrain: {planet.terrain}</h2>
             <h3>Climate: {planet.climate}</h3>
             <h3>Diameter: {localizeNumeric(planet.diameter)}</h3>
-            <h3>Surface_water %: {planet.surface_water}</h3>
+            <h3>Surface Water (%): {planet.surface_water}</h3>
             <h3>Gravity: {planet.gravity}</h3>
             <h3>Orbital Period: {planet.orbital_period}</h3>
             <h3>Rotation Period: {planet.rotation_period}</h3>

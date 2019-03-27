@@ -4,7 +4,7 @@ import './Footer.css';
 
 const footer = props => (
     <div className='footer'>
-        Created by Glen Cunningham with React.js
+        App by Glen Cunningham
     </div>
 );
 
