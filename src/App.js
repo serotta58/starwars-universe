@@ -13,7 +13,7 @@ import SpeciesPage from './cards/SpeciesCards';
 import StarshipPage from './cards/StarshipCards';
 import VehiclePage from './cards/VehicleCards';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 // TODO: Add some loading progress feedback such as showing which category
 // is being loaded, or how many items so far (as they are pulled from each page?).
