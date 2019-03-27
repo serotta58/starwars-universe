@@ -135,7 +135,8 @@ class App extends Component {
                     <h2>Explore the Star Wars Universe!</h2>
                     <p>Click a menu item to view a category.</p>
                     <p>Click on any item card in a category for more detail.</p>
-                    <p>Click on any links to jump that item.</p>
+                    <p>Click on any links to jump to that item.</p>
+                    <p>May the Force be with you!</p>
                   </div>
                 </div>
               )} />
