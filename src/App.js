@@ -33,11 +33,25 @@ class App extends Component {
     this.state = {
       sideDrawerOpen: false,
       loadingMessage: 'Loading the universe...',
+      filmsLoaded: 0,
+      filmsTotal: 0,
+      planetsLoaded: 0,
+      planetTotal: 0,
+      peopleLoaded: 0,
+      peopleTotal: 0,
+      speciesLoaded: 0,
+      speciesTotal: 0,
+      starshipsLoaded: 0,
+      starshipsTotal: 0,
+      vehiclesLoaded: 0,
+      vehiclesTotal: 0,
     };
     this.universe = {};
   }
 
   loadMapOfObjects = async (url) => {
+    const urlSplit = url.split('/');
+    const dataType = urlSplit[urlSplit.length - 2];
     const map = new Map([]);
     let arr = [];
     let reportedCount = 0;
@@ -56,11 +70,11 @@ class App extends Component {
       // Iterate through the objects on this page and add them to the array
       jsonObj.results.forEach(element => arr.push(element));
 
+      this.updateLoadCounts(dataType, arr.length, reportedCount);
+
       nextUrl = jsonObj.next;
     } while (nextUrl);
     // Sort the array on the appropriate field
-    const urlSplit = url.split('/');
-    const dataType = urlSplit[urlSplit.length - 2];
     switch (dataType) {
       case 'films':
         arr.sort((a, b) => a.episode_id - b.episode_id);
@@ -79,6 +93,31 @@ class App extends Component {
     return map;
   }
 
+  updateLoadCounts = (dataType, loadedCnt, reportedCount) => {
+    // Update the counts
+    switch (dataType) {
+      case 'films':
+        this.setState({ filmsLoaded: loadedCnt, filmsTotal: reportedCount });
+        break;
+      case 'planets':
+        this.setState({ planetsLoaded: loadedCnt, planetsTotal: reportedCount });
+        break;
+      case 'people':
+        this.setState({ peopleLoaded: loadedCnt, peopleTotal: reportedCount });
+        break;
+      case 'species':
+        this.setState({ speciesLoaded: loadedCnt, speciesTotal: reportedCount });
+        break;
+      case 'starships':
+        this.setState({ starshipsLoaded: loadedCnt, starshipsTotal: reportedCount });
+        break;
+      case 'vehicles':
+        this.setState({ vehiclesLoaded: loadedCnt, vehiclesTotal: reportedCount });
+        break;
+      default:
+        break;
+    }
+  }
 
   componentDidMount = async () => {
     try {
@@ -117,6 +156,12 @@ class App extends Component {
       return (
         <div className='centered-message'>
           <h2>{loadingMessage}</h2>
+          <div>Films: {Math.round(this.state.filmsLoaded / this.state.filmsTotal * 100)}%</div>
+          <div>Characters: {Math.round(this.state.peopleLoaded / this.state.peopleTotal * 100)}%</div>
+          <div>Planets: {Math.round(this.state.planetsLoaded / this.state.planetsTotal * 100)}%</div>
+          <div>Species: {Math.round(this.state.speciesLoaded / this.state.speciesTotal * 100)}%</div>
+          <div>Starships: {Math.round(this.state.starshipsLoaded / this.state.starshipsTotal * 100)}%</div>
+          <div>Vehicles: {Math.round(this.state.vehiclesLoaded / this.state.vehiclesTotal * 100)}%</div>
         </div>
       );
     } else {
