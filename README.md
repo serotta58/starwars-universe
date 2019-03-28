@@ -6,7 +6,7 @@ This single page React.js app loads the Star Wars data from www.swapi.co and the
 
 The main purpose of this exercise was to show how responsive a web app can be when it keeps the data in the browser and all page routing is done on the client side with no server interactions (i.e.- a single page app).  The initial download of all the data takes a few seconds, but after that, all the jumps between pages are nearly instant since there is no need to wait for file retrievals over the Internet.
 
-The initial startup time could be made much shorter through caching and/or background loading.  And it could be made more user friendly by adding some form of progress indicator.  See the To-Do list below.
+The initial startup time could be made much shorter through caching and/or background loading.  See the To-Do list below.
 
 ## Routing
 
@@ -22,5 +22,4 @@ The initial startup time could be made much shorter through caching and/or backg
 
 ## To-Do
 
-- Add some progress indicator:  The complete dataset is loaded before the app can be used, and this causes quite a delay due to the large number of fetches from the swapi.co API.  Showing the progress would make the wait seem shorter.  The parallel and asynchronous fetches make it trickier, but one idea would be to keep a count of how many objects (planets, people, whatever) had been retrieved so far, and show that incrementing.  And since each category page (e.g. planets) will tell you how many to expect from that category, the total expected could be updated to be able to show a percentage complete as well.
 - Add caching or background loading so the app is ready faster.  One thought is to direct all data retrievals through an interface that either serves up the cached data, or retrieves just that bit from the API (and keeps it in the cache) as needed.  Asynchronous background loading of the cache could still occur.  Or the background loading could be skipped and just load elements and add them to the cache as required.  For example, on first click of the Planets the app could retrieve all the planets from the API.  Or if jumping to a particular planet that is not in the cache yet, just that one could be retrieved from the API (faster since it is just one) to minimize the user wait time.  As they use the app, the local data store would quickly get populated and more and more would be retrieved locally with no waits.
