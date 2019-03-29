@@ -33,18 +33,19 @@ class App extends Component {
     this.state = {
       sideDrawerOpen: false,
       loadingMessage: 'Loading the universe...',
+      // Start totals at 1 rather than 0 to prevent divide by 0
       filmsLoaded: 0,
-      filmsTotal: 0,
+      filmsTotal: 1,
       planetsLoaded: 0,
-      planetTotal: 0,
+      planetsTotal: 1,
       peopleLoaded: 0,
-      peopleTotal: 0,
+      peopleTotal: 1,
       speciesLoaded: 0,
-      speciesTotal: 0,
+      speciesTotal: 1,
       starshipsLoaded: 0,
-      starshipsTotal: 0,
+      starshipsTotal: 1,
       vehiclesLoaded: 0,
-      vehiclesTotal: 0,
+      vehiclesTotal: 1,
     };
     this.universe = {};
   }
