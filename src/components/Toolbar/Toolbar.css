@@ -55,7 +55,7 @@
     color: yellow;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 780px) {
     .toolbar__navigation-items {
         display: none;
     }
@@ -65,11 +65,14 @@
     }
 }
 
-@media (min-width: 751px) {
+@media (min-width: 781px) {
     .toolbar__toggle-button {
          display: none;
     }
     .toolbar__logo {
         margin-left: 0;
+    }
+    .side-drawer {
+        display: none;
     }
 }

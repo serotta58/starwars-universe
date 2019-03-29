@@ -37,9 +37,3 @@
     /* font-weight: bold; */
     color: yellow;
 }
-
-@media (min-width: 751px) {
-    .side-drawer {
-        display: none;
-    }
-}
