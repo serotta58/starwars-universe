@@ -23,3 +23,5 @@ The initial startup time could be made much shorter through caching and/or backg
 ## To-Do
 
 - Add caching or background loading so the app is ready faster.  One thought is to direct all data retrievals through an interface that either serves up the cached data, or retrieves just that bit from the API (and keeps it in the cache) as needed.  Asynchronous background loading of the cache could still occur.  Or the background loading could be skipped and just load elements and add them to the cache as required.  For example, on first click of the Planets the app could retrieve all the planets from the API.  Or if jumping to a particular planet that is not in the cache yet, just that one could be retrieved from the API (faster since it is just one) to minimize the user wait time.  As they use the app, the local data store would quickly get populated and more and more would be retrieved locally with no waits.
+
+- Add a close button to the side drawer menu for a more obvious alternative to clicking on the backdrop.  This could be a simple small round button with an X in it.

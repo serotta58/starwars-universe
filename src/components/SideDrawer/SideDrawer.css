@@ -1,17 +1,17 @@
 .side-drawer {
     height: 100%;
     background: rgb(14, 11, 160);
-    box-shadow: 3px 0 10px rgba(0,0,0,0.7);
     position: fixed;
     top: 0;
     left: 0;
     z-index: 200;   /* above the backdrop */
-    transform: translateX(-120%);
+    transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
 }
 
 .side-drawer.open {
     transform: translateX(0);
+    box-shadow: 3px 0 10px rgba(0,0,0,0.7);
 }
 
 .side-drawer ul {
@@ -40,7 +40,7 @@
     color: yellow;
 }
 
-@media (min-width: 721px) {
+@media (min-width: 751px) {
     .side-drawer {
         display: none;
     }
