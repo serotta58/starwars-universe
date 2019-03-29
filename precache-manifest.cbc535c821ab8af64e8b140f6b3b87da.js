@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "6c22dcfc3caecd7598e0",
-    "url": "/starwars-universe/static/css/main.8de1feb5.chunk.css"
+    "revision": "aeb4d23e3ca34d9066ad",
+    "url": "/starwars-universe/static/css/main.4461acf4.chunk.css"
   },
   {
-    "revision": "6c22dcfc3caecd7598e0",
+    "revision": "aeb4d23e3ca34d9066ad",
     "url": "/starwars-universe/static/js/main.ef50fac6.chunk.js"
   },
   {
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/starwars-universe/static/js/2.0d08e3b9.chunk.js"
   },
   {
-    "revision": "ce623b67abaf2ea437de1466fe0a1060",
+    "revision": "7780b388d68d2a3be7e30d8998437e3f",
     "url": "/starwars-universe/index.html"
   }
 ];
