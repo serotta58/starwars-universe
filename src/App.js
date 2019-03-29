@@ -15,9 +15,6 @@ import VehiclePage from './cards/VehicleCards';
 
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
-// TODO: Add some loading progress feedback such as showing which category
-// is being loaded, or how many items so far (as they are pulled from each page?).
-
 const urls = [
   'https://swapi.co/api/films/',
   'https://swapi.co/api/people/',
@@ -170,7 +167,7 @@ class App extends Component {
         <Router>
           <div className="App">
             <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
-            <SideDrawer show={this.state.sideDrawerOpen} />
+            <SideDrawer show={this.state.sideDrawerOpen} drawerClickHandler={this.drawerToggleClickHandler} />
             {backdrop}
             <main>
               <Route exact path='/' render={() => (
