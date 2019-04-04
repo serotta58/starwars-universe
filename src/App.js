@@ -13,6 +13,9 @@ import SpeciesPage from './cards/SpeciesCards';
 import StarshipPage from './cards/StarshipCards';
 import VehiclePage from './cards/VehicleCards';
 
+import OrbitSpinner from '../node_modules/@bit/bondz.react-epic-spinners.orbit-spinner';
+
+
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 const urls = [
@@ -160,6 +163,13 @@ class App extends Component {
           <div>Species: {Math.round(this.state.speciesLoaded / this.state.speciesTotal * 100)}%</div>
           <div>Starships: {Math.round(this.state.starshipsLoaded / this.state.starshipsTotal * 100)}%</div>
           <div>Vehicles: {Math.round(this.state.vehiclesLoaded / this.state.vehiclesTotal * 100)}%</div>
+          <div style={{marginTop: '40px'}}>
+          <OrbitSpinner
+            color='#000000'
+            size={100}
+            style={{marginLeft:'auto', marginRight:'auto'}}
+          />
+          </div>
         </div>
       );
     } else {
