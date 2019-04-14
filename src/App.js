@@ -123,8 +123,6 @@ class App extends Component {
   componentDidMount = async () => {
     try {
       const [films, people, planets, species, starships, vehicles] = await Promise.all(
-        // TODO: Add some type of progress indicator, such as telling what type
-        // of data is being loaded, or how many objects so far.
         urls.map(url => this.loadMapOfObjects(url))
       );
       this.universe = { films, people, planets, species, starships, vehicles };
