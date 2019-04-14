@@ -2,6 +2,16 @@
 
 This single page React.js app loads the Star Wars data from [www.swapi.co](https://www.swapi.co) and then presents it in a browsable form with links between related items.  Category pages listing all items of that type, and individual detail pages are show.
 
+## Code Install Notes
+
+The loading spinner is from [Bit](https://bit.dev/) rather than [NpmJS](https://www.npmjs.com/), so you may need to add Bit as a scoped registry to install it with npm.  See [here](https://docs.bit.dev/docs/installing-components.html) for more detail, or use the following:
+
+```bash
+npm config set '@bit:registry' https://node.bit.dev
+```
+
+Once that is done, ```npm install``` should install this and all other required node modules.
+
 ## Snappy Response
 
 The main purpose of this exercise was to show how responsive a web app can be when it keeps the data in the browser and all page routing is done on the client side with no server interactions (i.e.- a single page app).  The initial download of all the data takes a few seconds, but after that, all the jumps between pages are nearly instant since there is no need to wait for file retrievals over the Internet.
