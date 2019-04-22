@@ -4,15 +4,11 @@
 
 This single page React.js app loads the Star Wars data from [www.swapi.co](https://www.swapi.co) and then presents it in a browsable form with links between related items.  Category pages listing all items of that type, and individual detail pages are show.
 
-## Code Install Notes
+## Deployed Versions
 
-The loading spinner is from [Bit](https://bit.dev/) rather than [NpmJS](https://www.npmjs.com/), so you may need to add Bit as a scoped registry to install it with npm.  See [here](https://docs.bit.dev/docs/installing-components.html) for more detail, or use the following:
+The older version deployed on [GitHub Pages](https://serotta58.github.io/starwars-universe/) loaded all the data from the [Star Wars API](https://www.swapi.co/api/) when the web app is first loaded, or any time a page is refreshed in the browser.  This illustrates parallel asynchronous loading, progress display and a spinner to keep the user entertained during the long loading time (6 seconds on a fast connection, much longer on a slow mobile connection).
 
-```bash
-npm config set '@bit:registry' https://node.bit.dev
-```
-
-Once that is done, ```npm install``` should install this and all other required node modules.
+The newer working version is now deployed on Netlify [here](https://starwars-universe.netlify.com/), and will feature much faster startup due to loading the API data during the build and compiling it into a single static JSON data file.  This will act similar to a statically generated blog site where the data is relatively static and thus only needs to be updated and baked into the compiled site whenever there is a change.
 
 ## Snappy Response
 
