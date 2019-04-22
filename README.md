@@ -1,5 +1,7 @@
 # Star Wars Universe
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c319526a-b930-48e7-be54-b432ca3510c7/deploy-status)](https://app.netlify.com/sites/starwars-universe/deploys)
+
 This single page React.js app loads the Star Wars data from [www.swapi.co](https://www.swapi.co) and then presents it in a browsable form with links between related items.  Category pages listing all items of that type, and individual detail pages are show.
 
 ## Code Install Notes
