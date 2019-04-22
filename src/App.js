@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import Toolbar from './components/Toolbar/Toolbar';
 import SideDrawer from './components/SideDrawer/SideDrawer';
@@ -12,9 +13,6 @@ import PlanetPage from './cards/PlanetCards';
 import SpeciesPage from './cards/SpeciesCards';
 import StarshipPage from './cards/StarshipCards';
 import VehiclePage from './cards/VehicleCards';
-
-import OrbitSpinner from '../node_modules/@bit/bondz.react-epic-spinners.orbit-spinner';
-
 
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -59,21 +57,21 @@ class App extends Component {
     let nextUrl = url;
     // read each successive page until no more
     do {
-      let response = await fetch(nextUrl);
-      // Remember that fetch doesn't throw errors on HTTP 404 or 500,
-      // so we have to check the 'ok' state to catch those too.
-      if (!response.ok) {
-        throw Error(response.status + ' on fetch of ' + response.url);
+      try {
+        const response = await axios.get(nextUrl);
+        const jsonObj = response.data;
+        reportedCount = jsonObj.count;
+
+        // Iterate through the objects on this page and add them to the array
+        jsonObj.results.forEach(element => arr.push(element));
+
+        this.updateLoadCounts(dataType, arr.length, reportedCount);
+
+        nextUrl = jsonObj.next;
+      } catch (error) {
+        console.error(error);
+        nextUrl = null;
       }
-      const jsonObj = await response.json();
-      reportedCount = jsonObj.count;
-
-      // Iterate through the objects on this page and add them to the array
-      jsonObj.results.forEach(element => arr.push(element));
-
-      this.updateLoadCounts(dataType, arr.length, reportedCount);
-
-      nextUrl = jsonObj.next;
     } while (nextUrl);
     // Sort the array on the appropriate field
     switch (dataType) {
@@ -161,13 +159,6 @@ class App extends Component {
           <div>Species: {Math.round(this.state.speciesLoaded / this.state.speciesTotal * 100)}%</div>
           <div>Starships: {Math.round(this.state.starshipsLoaded / this.state.starshipsTotal * 100)}%</div>
           <div>Vehicles: {Math.round(this.state.vehiclesLoaded / this.state.vehiclesTotal * 100)}%</div>
-          <div style={{marginTop: '40px'}}>
-          <OrbitSpinner
-            color='#000000'
-            size={100}
-            style={{marginLeft:'auto', marginRight:'auto'}}
-          />
-          </div>
         </div>
       );
     } else {

@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://serotta58.github.io/starwars-universe",
   "dependencies": {
-    "@bit/bondz.react-epic-spinners.orbit-spinner": "^0.3.0",
+    "axios": "^0.18.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-router-dom": "^5.0.0",
