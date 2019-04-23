@@ -8,13 +8,19 @@ This single page React.js app loads the Star Wars data from [www.swapi.co](https
 
 The older version deployed on [GitHub Pages](https://serotta58.github.io/starwars-universe/) loaded all the data from the [Star Wars API](https://www.swapi.co/api/) when the web app is first loaded, or any time a page is refreshed in the browser.  This illustrates parallel asynchronous loading, progress display and a spinner to keep the user entertained during the long loading time (3-6 seconds on a fast connection, much longer on a slow mobile connection).
 
-The newer working version is now deployed on Netlify [here](https://starwars-universe.netlify.com/), and features a much much faster startup due to loading the API data during the build and compiling it into a single static JSON data file.  This will act similar to a statically generated blog site where the data is relatively static and thus only needs to be updated and baked into the compiled site whenever there is a change.
+The newer working version is now deployed on [Netlify](https://starwars-universe.netlify.com/), and features a much much faster startup due to loading the API data during the build and compiling it into a single static JSON data file.  This will act similar to a statically generated blog site where the data is relatively static and thus only needs to be updated and baked into the compiled site whenever there is a change.
 
-Compare the two example websites to see the difference in startup speeds.
+Compare the two example websites to see the amazing difference in startup speeds.  I measured these times for the web app and data to complete loading, or for a browser refresh.  (The 3G speeds were similated in Chrome developer mode.):
+
+|          | Fast WiFi | Fast 3G | Slow 3G |
+|---------:|:---------:|:-------:|:-------:|
+|   Old:   |   3.4 sec | 7 sec   |  24 sec |
+|   New:   |   0.2 sec | 2.2 sec |  8 sec  |
+| Speedup: |    17 X ! |   3X    |   3 X   |
 
 ## Snappy Response
 
-The main purpose of this exercise was to show how responsive a web app can be when it keeps the data in the browser and all page routing is done on the client side with no server interactions (i.e.- a single page app).  The initial download of all the data takes a fraction of a second with a fast connection, but after that, all the jumps between pages are nearly instant since there is no need to wait for file retrievals over the Internet.
+The main purpose of this exercise was to show how responsive a web app can be when it keeps the data in the browser and all page routing is done on the client side with no server interactions (i.e.- a single page app).  The initial download of all the data takes a fraction of a second with a fast connection, but after that, all the jumps between pages are nearly instantaneous since there is no need to wait for file retrievals over the Internet.
 
 ## Routing
 

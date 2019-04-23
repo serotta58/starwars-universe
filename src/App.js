@@ -65,7 +65,7 @@ class App extends Component {
 
     if (loadingMessage.length) {
       return (
-        <div className='centered-message'>
+        <div className='centered'>
           <h2>{loadingMessage}</h2>
         </div>
       );
@@ -78,14 +78,14 @@ class App extends Component {
             {backdrop}
             <main>
               <Route exact path='/' render={() => (
-                <div className='scroll-up'>
-                  <div>
+                <div className='centered'>
+                  {/* <div> */}
                     <h2>Explore the Star Wars Universe!</h2>
                     <p>Click a menu item to view a category.</p>
-                    <p>Click on any item card in a category for more detail.</p>
-                    <p>Click on any links to jump to that item.</p>
-                    <p>May the Force be with you!</p>
-                  </div>
+                    <p>Click any item card in a category for more detail.</p>
+                    <p>Click any links to jump to that item.</p>
+                    <h3>May the Force be with you!</h3>
+                  {/* </div> */}
                 </div>
               )} />
               <ScrollToTop>

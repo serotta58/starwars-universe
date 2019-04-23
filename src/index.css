@@ -22,51 +22,16 @@ main {
   padding-bottom: 56px;
 }
 
-.centered-message {
-  padding-top: 50px;
+.centered {
+  height: 65vh;
   text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.scroll-up {
- height: 600px;	
- overflow: hidden;
- position: relative;
-}
-.scroll-up div {
- position: absolute;
- width: 100%;
- height: 100%;
- margin: 0;
- line-height: 75px;
- text-align: center;
- word-wrap: normal;
- /* Starting position */
- -moz-transform:translateY(100%);
- -webkit-transform:translateY(100%);	
- transform:translateY(100%);
- /* Apply animation to this element */	
- -moz-animation: scroll-up 20s linear infinite;
- -webkit-animation: scroll-up 20s linear infinite;
- animation: scroll-up 20s linear infinite;
-}
-/* Move it (define the animation) */
-@-moz-keyframes scroll-up {
- 0%   { -moz-transform: translateY(100%); }
- 100% { -moz-transform: translateY(-100%); }
-}
-@-webkit-keyframes scroll-up {
- 0%   { -webkit-transform: translateY(100%); }
- 100% { -webkit-transform: translateY(-100%); }
-}
-@keyframes scroll-up {
- 0%   { 
-  -moz-transform: translateY(100%); /* Firefox bug fix */
-  -webkit-transform: translateY(100%); /* Firefox bug fix */
-  transform: translateY(100%);
- }
- 100% { 
-  -moz-transform: translateY(-100%); /* Firefox bug fix */
-  -webkit-transform: translateY(-100%); /* Firefox bug fix */
-  transform: translateY(-100%);
- }
+p {
+  margin: 12px 0;
 }
