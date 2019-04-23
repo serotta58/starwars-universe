@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link, Redirect } from 'react-router-dom';
 
 import {
     keyFromUrl, localizeNumeric, CharacterList, FilmList } from './CardFuncs';
@@ -12,6 +12,7 @@ const PlanetsPage = ({ universe }) => {
             <Route path='/planets/:number' render={
                 ({ match }) => (<PlanetDetail match={match} universe={universe} />)
             } />
+            <Redirect to='/planets' />ç
         </Switch>
     );
 };
@@ -53,6 +54,9 @@ const PlanetDetail = ({ match, universe }) => {
     // destructure the universe!
     const { planets } = universe;
     const planet = planets.get(detailKey);
+    if (!planet) {
+        return <Redirect to='/planets' />;
+    }
     return (
         <div className='detail'>
             <h1>{planet.name}</h1>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link, Redirect } from 'react-router-dom';
 
 import {
     keyFromUrl, CharacterList, PlanetLink, FilmList } from './CardFuncs';
@@ -12,6 +12,7 @@ const SpeciesPage = ({ universe }) => {
             <Route path='/species/:number' render={
                 ({ match }) => (<SpeciesDetail match={match} universe={universe} />)
             } />
+            <Redirect to='/species' />
         </Switch>
     );
 };
@@ -55,6 +56,9 @@ const SpeciesDetail = ({ match, universe }) => {
     let { species } = universe;
     const allSpecies = species;
     species = allSpecies.get(detailKey);
+    if (!species) {
+        return <Redirect to='/species' />;
+    }
     return (
         <div className='detail'>
             <h1>{species.name}</h1>

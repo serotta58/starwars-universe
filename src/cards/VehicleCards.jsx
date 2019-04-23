@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link, Redirect } from 'react-router-dom';
 
 import {
     keyFromUrl, CharacterList, FilmList, localizeNumeric
@@ -13,6 +13,7 @@ const VehiclePage = ({ universe }) => {
             <Route path='/vehicles/:number' render={
                 ({ match }) => (<VehicleDetail match={match} universe={universe} />)
             } />
+            <Redirect to='/vehicles' />
         </Switch>
     );
 };
@@ -56,6 +57,9 @@ const VehicleDetail = ({ match, universe }) => {
     // destructure the universe!
     const { vehicles } = universe;
     const vehicle = vehicles.get(detailKey);
+    if (!vehicle) {
+        return <Redirect to='/vehicles' />;
+    }
     return (
         <div className='detail'>
             <h1>{vehicle.name}</h1>

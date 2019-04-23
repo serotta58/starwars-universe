@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link, Redirect } from 'react-router-dom';
 
 import {
     keyFromUrl, romanize, CharacterList, PlanetList,
@@ -13,6 +13,7 @@ const FilmPage = ({ universe }) => {
             <Route path='/films/:number' render={
                 ({ match }) => (<FilmDetail match={match} universe={universe} />)
             } />
+            <Redirect to='/films' />
         </Switch>
     );
 };
@@ -54,6 +55,9 @@ const FilmDetail = ({ match, universe }) => {
     // destructure the universe!
     const { films } = universe;
     const film = films.get(detailKey);
+    if (!film) {
+        return <Redirect to='/films' />;
+    }
     return (
         <div className='detail'>
             <h1>{film.title}</h1>

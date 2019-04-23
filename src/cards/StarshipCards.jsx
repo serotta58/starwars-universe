@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link, Redirect } from 'react-router-dom';
 
 import {
     keyFromUrl, CharacterList, localizeNumeric, FilmList } from './CardFuncs';
@@ -12,6 +12,7 @@ const StarshipPage = ({ universe }) => {
             <Route path='/starships/:number' render={
                 ({ match }) => (<StarshipDetail match={match} universe={universe} />)
             } />
+            <Redirect to='/starships' />
         </Switch>
     );
 };
@@ -55,6 +56,9 @@ const StarshipDetail = ({ match, universe }) => {
     // destructure the universe!
     const { starships } = universe;
     const starship = starships.get(detailKey);
+    if (!starship) {
+        return <Redirect to='/starships' />;        
+    }
     return (
         <div className='detail'>
             <h1>{starship.name}</h1>
