@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, Link } from 'react-router-dom';
 
 import {
-    fullUrlFromPath, CharacterList, PlanetLink, FilmList } from './CardFuncs';
+    keyFromUrl, CharacterList, PlanetLink, FilmList } from './CardFuncs';
 import './Cards.css'
 
 const SpeciesPage = ({ universe }) => {
@@ -38,8 +38,7 @@ const SpeciesCards = ({universe}) => {
 };
 
 const SpeciesCard = ({species}) => {
-    const arr = species.url.split('/');
-    const number = arr[arr.length - 2];
+    const number = species.url;
     const localUrl = '/species/' + number;
     return (
         <Link to={localUrl} className='card grow'>
@@ -51,11 +50,11 @@ const SpeciesCard = ({species}) => {
 }
 
 const SpeciesDetail = ({ match, universe }) => {
-    const detailUrl = fullUrlFromPath(match.url);
+    const detailKey = keyFromUrl(match.url);
     // destructure the universe!
     let { species } = universe;
     const allSpecies = species;
-    species = allSpecies.get(detailUrl);
+    species = allSpecies.get(detailKey);
     return (
         <div className='detail'>
             <h1>{species.name}</h1>

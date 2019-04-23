@@ -21,9 +21,10 @@ export function romanize(num) {
     return Array(+digits.join("") + 1).join("M") + roman;
 }
 
-export function fullUrlFromPath(path) {
-    // We need this to extract data from the films, planets... maps
-    return 'https://swapi.co/api' + path + '/';
+export function keyFromUrl( url ) {
+    const arr = url.split('/');
+    const number = arr[arr.length - 1];
+    return number;
 }
 
 export const FilmList = ({ films, universe }) => {
@@ -46,8 +47,7 @@ export const FilmList = ({ films, universe }) => {
 
 const FilmLink = ({ origUrl, universe }) => {
     const { films } = universe;
-    const arr = origUrl.split('/');
-    const number = arr[arr.length - 2];
+    const number = origUrl;
     const localUrl = '/films/' + number;
     const name = romanize(films.get(origUrl).episode_id)
         + ': ' + films.get(origUrl).title;
@@ -79,8 +79,7 @@ export const CharacterList = ({ characters, universe, title }) => {
 
 const PersonLink = ({ origUrl, universe }) => {
     const { people } = universe;
-    const arr = origUrl.split('/');
-    const number = arr[arr.length - 2];
+    const number = origUrl;
     const localUrl = '/people/' + number;
     const name = people.get(origUrl).name;
     return (
@@ -109,13 +108,12 @@ export const PlanetList = ({ planets, universe }) => {
 }
 
 export const PlanetLink = ({ origUrl, universe, useSpan }) => {
+    useSpan = useSpan || false;     // default is false
     if (isNullOrUndefined(origUrl)) {
         return useSpan ? <span>N/A</span> : <div>N/A</div>;
     }
-    useSpan = useSpan || false;     // default is false
     const { planets } = universe;
-    const arr = origUrl.split('/');
-    const number = arr[arr.length - 2];
+    const number = origUrl;
     const localUrl = '/planets/' + number;
     const name = planets.get(origUrl).name;
     if (useSpan) {
@@ -153,8 +151,7 @@ export const SpeciesList = ({ species, universe }) => {
 
 export const SpeciesLink = ({ origUrl, universe }) => {
     const { species } = universe;
-    const arr = origUrl.split('/');
-    const number = arr[arr.length - 2];
+    const number = origUrl;
     const localUrl = '/species/' + number;
     const name = species.get(origUrl).name;
     return (
@@ -184,8 +181,7 @@ export const StarshipList = ({ starships, universe }) => {
 
 const StarshipLink = ({ origUrl, universe }) => {
     const { starships } = universe;
-    const arr = origUrl.split('/');
-    const number = arr[arr.length - 2];
+    const number = origUrl;
     const localUrl = '/starships/' + number;
     const name = starships.get(origUrl).name;
     return (
@@ -215,8 +211,7 @@ export const VehicleList = ({ vehicles, universe }) => {
 
 const VehicleLink = ({ origUrl, universe }) => {
     const { vehicles } = universe;
-    const arr = origUrl.split('/');
-    const number = arr[arr.length - 2];
+    const number = origUrl;
     const localUrl = '/vehicles/' + number;
     const name = vehicles.get(origUrl).name;
     return (

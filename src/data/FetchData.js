@@ -17,7 +17,16 @@ loadAndSaveUniverseData = async () => {
     );
     const universe = { films, people, planets, species, starships, vehicles };
     const jsonData = JSON.stringify(universe);
-    fs.writeFile("./public/universe.json", jsonData, function(err) {
+    // Shorten all the urls to just the index number to shrink the file
+    // Thus:
+    //    'https://swapi.co/api/people/15/'
+    // becomes just
+    //    '15'
+    const shorterData = jsonData.replace(
+      /https:\/\/swapi.co\/api\/(films|people|planets|species|starships|vehicles)\/(\d+)\//g,
+      '$2');
+
+    fs.writeFile("./public/universe.json", shorterData, function(err) {
       if (err) {
         console.error(err);
       }
@@ -50,6 +59,11 @@ loadArrayOfObjects = async (url) => {
       nextUrl = null;
     }
   } while (nextUrl);
+  // Remove bulky unnecessary properties
+  arr.forEach(obj => {
+    delete obj.created;
+    delete obj.edited;
+  })
   // Sort the array on the appropriate field
   switch (dataType) {
     case 'films':

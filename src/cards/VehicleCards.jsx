@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, Link } from 'react-router-dom';
 
 import {
-    fullUrlFromPath, CharacterList, FilmList, localizeNumeric
+    keyFromUrl, CharacterList, FilmList, localizeNumeric
 } from './CardFuncs';
 import './Cards.css'
 
@@ -39,8 +39,7 @@ const VehicleCards = ({ universe }) => {
 };
 
 const VehicleCard = ({ vehicle }) => {
-    const arr = vehicle.url.split('/');
-    const number = arr[arr.length - 2];
+    const number = vehicle.url;
     const localUrl = '/vehicles/' + number;
     return (
         <Link to={localUrl} className='card grow'>
@@ -53,10 +52,10 @@ const VehicleCard = ({ vehicle }) => {
 }
 
 const VehicleDetail = ({ match, universe }) => {
-    const detailUrl = fullUrlFromPath(match.url);
+    const detailKey = keyFromUrl(match.url);
     // destructure the universe!
     const { vehicles } = universe;
-    const vehicle = vehicles.get(detailUrl);
+    const vehicle = vehicles.get(detailKey);
     return (
         <div className='detail'>
             <h1>{vehicle.name}</h1>

@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, Link } from 'react-router-dom';
 
 import {
-    fullUrlFromPath, localizeNumeric, CharacterList, FilmList } from './CardFuncs';
+    keyFromUrl, localizeNumeric, CharacterList, FilmList } from './CardFuncs';
 import './Cards.css'
 
 const PlanetsPage = ({ universe }) => {
@@ -37,8 +37,7 @@ const PlanetCards = ({universe}) => {
 };
 
 const PlanetCard = ({planet}) => {
-    const arr = planet.url.split('/');
-    const number = arr[arr.length - 2];
+    const number = planet.url;
     const localUrl = '/planets/' + number;
     return (
         <Link to={localUrl} className='card grow'>
@@ -50,10 +49,10 @@ const PlanetCard = ({planet}) => {
 }
 
 const PlanetDetail = ({ match, universe }) => {
-    const detailUrl = fullUrlFromPath(match.url);
+    const detailKey = keyFromUrl(match.url);
     // destructure the universe!
     const { planets } = universe;
-    const planet = planets.get(detailUrl);
+    const planet = planets.get(detailKey);
     return (
         <div className='detail'>
             <h1>{planet.name}</h1>
