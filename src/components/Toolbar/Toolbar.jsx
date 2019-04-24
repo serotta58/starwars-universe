@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import DrawerToggleBtn from '../SideDrawer/DrawerToggleBtn';
 import MenuItems from '../MenuItems/MenuItems';
@@ -20,4 +21,7 @@ const toolbar = props => (
     </header>
 );
 
+toolbar.propTypes = {
+    drawerClickHandler: PropTypes.func.isRequired
+}
 export default toolbar;

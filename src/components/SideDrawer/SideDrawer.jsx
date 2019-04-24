@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './SideDrawer.css'
 import MenuItems from '../MenuItems/MenuItems';
@@ -12,4 +13,7 @@ const sideDrawer = props => {
     );
 };
 
+sideDrawer.propTypes = {
+    drawerClickHandler: PropTypes.func.isRequired
+}
 export default sideDrawer;
