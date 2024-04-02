@@ -2,12 +2,12 @@ let fs = require('fs');
 let axios = require('axios');
 
 const urls = [
-  'https://swapi.co/api/films/',
-  'https://swapi.co/api/people/',
-  'https://swapi.co/api/planets/',
-  'https://swapi.co/api/species/',
-  'https://swapi.co/api/starships/',
-  'https://swapi.co/api/vehicles/'
+  'https://swapi.dev/api/films/',
+  'https://swapi.dev/api/people/',
+  'https://swapi.dev/api/planets/',
+  'https://swapi.dev/api/species/',
+  'https://swapi.dev/api/starships/',
+  'https://swapi.dev/api/vehicles/'
 ];
 
 loadAndSaveUniverseData = async () => {
@@ -19,11 +19,11 @@ loadAndSaveUniverseData = async () => {
     const jsonData = JSON.stringify(universe);
     // Shorten all the urls to just the index number to shrink the file
     // Thus:
-    //    'https://swapi.co/api/people/15/'
+    //    'https://swapi.dev/api/people/15/'
     // becomes just
     //    '15'
     const shorterData = jsonData.replace(
-      /https:\/\/swapi.co\/api\/(films|people|planets|species|starships|vehicles)\/(\d+)\//g,
+      /https:\/\/swapi.dev\/api\/(films|people|planets|species|starships|vehicles)\/(\d+)\//g,
       '$2');
 
     fs.writeFile("./public/universe.json", shorterData, function(err) {
